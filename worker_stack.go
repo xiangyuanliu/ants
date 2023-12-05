@@ -74,6 +74,9 @@ func (wq *workerStack) binarySearch(l, r int, expiryTime time.Time) int {
 
 func (wq *workerStack) reset() {
 	for i := 0; i < wq.len(); i++ {
+		if wq.items[i] == nil {
+			continue
+		}
 		wq.items[i].finish()
 		wq.items[i] = nil
 	}
